@@ -78,7 +78,6 @@ If the task_manager database does not exist, create it by running the following 
 
 ```bash
 php bin/console doctrine:database:create
-This will create the task_manager database.
 ```
 
 3.3. Grant Privileges (if needed)
@@ -95,8 +94,8 @@ Now, run the migrations to set up the database schema (tables, etc.):
 
 ```bash
 php bin/console doctrine:migrations:migrate
-This will create the necessary tables, including tasks, and set up the created_at, updated_at, and deleted_at fields for your entities.
 ```
+This will create the necessary tables, including tasks, and set up the created_at, updated_at, and deleted_at fields for your entities.
 
 5. Configure Your Web Server
 To run the application, enter the following command:

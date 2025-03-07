@@ -27,13 +27,5 @@ class TaskRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    
-    
-
-    public function softDelete(Task $task): void
-    {
-        $task->setDeletedAt(new \DateTime());
-        $this->_em->flush();
-    }
 
 }

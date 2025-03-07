@@ -49,7 +49,6 @@ class TaskController extends AbstractController
     }
     
     
-
     /*
     * Add task
     */

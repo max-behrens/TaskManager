@@ -32,7 +32,6 @@ class TaskService
     }
 
     
-    
     /*
     * Get total tasks (should move to the Repository)
     */
