@@ -68,7 +68,9 @@
     </div>
 
     <script>
-        // Toggle task status (AJAX)
+        /* 
+        * Toggle task status (AJAX).
+        */
         async function toggleTask(id) {
             try {
                 const response = await fetch(`/tasks/${id}/toggle`, { method: 'POST' });
@@ -92,12 +94,15 @@
             }
         }
 
+        /*
+        * Navigate to a different page.
+        */
         function navigatePage(page) {
 
-            // Create URL and redirect
+            // Create URL and redirect.
             const url = new URL(window.location.href);
             url.searchParams.set('page', page);
-            
+
             window.location.href = url.toString();
         }
 
