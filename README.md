@@ -5,6 +5,7 @@ configure the environment, and grant the necessary privileges to your MySQL data
 
 # Project Structure:
 
+```bash
 task-manager/
 ├── src/
 │   ├── Controller/
@@ -22,6 +23,7 @@ task-manager/
 │   │   ├── index.html.twig
 │   │   ├── create.html.twig
 │   │   ├── edit.html.twig
+```
 
 
 
