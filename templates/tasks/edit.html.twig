@@ -1,0 +1,16 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Task{% endblock %}
+
+{% block body %}
+    <div class="max-w-lg mx-auto mt-8">
+        <h2 class="text-xl font-bold mb-4">Edit Task</h2>
+
+        {{ form_start(form) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.is_done) }}
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Changes</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

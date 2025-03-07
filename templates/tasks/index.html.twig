@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task Manager{% endblock %}
+
+{% block body %}
+    <div class="max-w-lg mx-auto mt-8">
+        <h2 class="text-xl font-bold mb-4">Task List</h2>
+
+         {# Form for adding a new task #}
+        {{ form_start(form, {'action': path('task_add'), 'method': 'POST'}) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+        {# Display tasks in a table #}
+        <div class="mt-6">
+            <ul id="task-list" class="bg-white shadow-md rounded-lg p-4 mt-6">
+                <li class="flex justify-between mb-2 font-bold text-left">
+                    <span>Title</span>
+                    <span>Status</span>
+                    <span>Actions</span>
+                </li>
+                {% for task in tasks %}
+                    <li id="task-{{ task.id }}" class="flex justify-between mb-2">
+                        <span>{{ task.title }}</span>
+                        <span class="text-gray-600">
+                            {% if task.is_done %}
+                                Done
+                            {% else %}
+                                Not Done
+                            {% endif %}
+                        </span>
+                        <div>
+                            <button onclick="toggleTask({{ task.id }})" class="bg-green-500 text-white px-2 py-1 rounded">Mark Done</button>
+
+                            {# Edit task form #}
+                            <form action="{{ path('task_edit', {'id': task.id}) }}" method="GET" style="display:inline;">
+                                <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded">Edit</button>
+                            </form>
+
+                            {# Delete task form #}
+                            <form action="{{ path('task_delete', {'id': task.id}) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {# Pagination controls #}
+        <div class="mt-4 flex justify-between">
+            <button 
+                id="prev-page" 
+                onclick="navigatePage({{ currentPage - 1 }})"
+                class="bg-gray-300 px-4 py-2 rounded {% if currentPage == 1 %}opacity-50 cursor-not-allowed{% endif %}" 
+                type="button">
+                Previous
+            </button>
+            <span class="self-center">Page {{ currentPage }} of {{ totalPages }}</span>
+            <button 
+                id="next-page" 
+                onclick="navigatePage({{ currentPage + 1 }})"
+                class="bg-gray-300 px-4 py-2 rounded {% if currentPage == totalPages %}opacity-50 cursor-not-allowed{% endif %}" 
+                type="button">
+                Next
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle task status (AJAX)
+        async function toggleTask(id) {
+            try {
+                const response = await fetch(`/tasks/${id}/toggle`, { method: 'POST' });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Server error response:', errorText);
+                    alert('Failed to toggle status. Check the console for details.');
+                    return;
+                }
+
+                const data = await response.json();
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Failed to toggle status: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error in toggleTask function:', error);
+                alert('An error occurred. Check console for details.');
+            }
+        }
+
+        function navigatePage(page) {
+
+            // Create URL and redirect
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', page);
+            
+            window.location.href = url.toString();
+        }
+
+    </script>
+
+{% endblock %}
