@@ -45,31 +45,28 @@ git clone git@github.com:max-behrens/TaskManager.git
 cd TaskManager
 ```
 
-
-2. Install Dependencies
-Install the project dependencies using Composer. In the root of the project directory, run:
-
-```bash
-composer install
-```
-
-3. Set Up Your Environment
+2. Set Up Your Environment
 3.1. Database Configuration
-Create a .env.local file in the root of your project if it doesn't exist already. This file will store environment-specific variables, such as your database credentials.
-
+Create a .env file in the root of your project if it doesn't exist already, or copy .env.dev to create it.
 ```bash
-cp .env .env.local
+cp .env.dev .env
 ```
-Now, edit .env.local and update the database URL in both .env and .env.local:
-
+Add the following to your .env file:
 ```bash
 DATABASE_URL="mysql://root:r00tadmin@127.0.0.1:3306/task_manager?serverVersion=5.7"
 ```
 Make sure to replace r00tadmin with your MySQL root password.
 
-Also, create a new file called .env.dev, and add the following to it:
+Also, make sure that the following is in .emv.dev:
 ```bash
 APP_SECRET=0c576a81577c27b66e249f687e317392
+```
+
+3. Install Dependencies
+Install the project dependencies using Composer. In the root of the project directory, run:
+
+```bash
+composer install
 ```
 
 
