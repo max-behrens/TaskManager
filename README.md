@@ -41,7 +41,7 @@ Before starting, you need to have the following installed:
 First, clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/your-username/task-manager.git
+git clone git@github.com:max-behrens/TaskManager.git
 cd task-manager
 ```
 
