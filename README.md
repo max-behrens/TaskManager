@@ -42,7 +42,7 @@ First, clone this repository to your local machine.
 
 ```bash
 git clone git@github.com:max-behrens/TaskManager.git
-cd task-manager
+cd TaskManager
 ```
 
 
