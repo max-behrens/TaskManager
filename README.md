@@ -94,23 +94,33 @@ php bin/console doctrine:migrations:migrate
 ```
 This will create the necessary tables, including tasks, and set up the created_at, updated_at, and deleted_at fields for your entities.
 
-5. Configure Your Web Server
+5. Run npm Commands
+Run both of these commands in the following order:
+```bash
+npm install
+```
+```bash
+npm run dev
+```
+You may need to run npm run dev in the IDE terminal if it throws an error in powershell.
+
+6. Configure Your Web Server
 To run the application, enter the following command:
 
 ```bash
 symfony server:start
 ```
 
-6. Running the Application
+7. Running the Application
 To access the application, open your browser and go to:
 
-http://127.0.0.1:8000
-If everything is set up correctly, you should be able to see the Task Manager in action.
+http://127.0.0.1:8000/tasks
+If everything is set up correctly, you should be able to see the Task Manager.
 
-7. Test the Application
+8. Test the Application
 Test the CRUD functionality to ensure everything is working:
 
 Create a Task: Add new tasks through the form.
 Edit a Task: Edit the tasks you've added.
 Delete a Task: Remove tasks.
-Pagination: Ensure pagination works when there are multiple tasks.
+Pagination: Ensure pagination works when there are more than 5 tasks per page.
